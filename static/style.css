@@ -1,0 +1,134 @@
+/* General Styles */
+/* Background Styling with Blur */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: none; /* Hapus background di body agar pseudo-element bekerja */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+/* Background Blur Effect */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://img.freepik.com/free-vector/hand-drawn-comic-book-city-background_23-2151138776.jpg?t=st=1741971426~exp=1741975026~hmac=0211b89f41fa798010157009d11ba870fdd3aab506c6663226e87f75c32ea1dd&w=1380') 
+        no-repeat center center/cover;
+    filter: blur(4px); /* Tambahkan efek blur */
+    z-index: -1; /* Posisikan di belakang konten */
+}
+
+/* Tambahkan sedikit transparansi pada kontainer agar lebih elegan */
+.chat-container {
+    width: 600px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    backdrop-filter: blur(5px); /* Blur tambahan pada kontainer */
+}
+
+
+/* Chat Box */
+#chat-box {
+    height: 280px;
+    overflow-y: auto;
+    border: none;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    scroll-behavior: smooth;
+}
+
+/* Message Styling */
+.message {
+    padding: 12px 15px;
+    border-radius: 18px;
+    display: inline-block;
+    max-width: 75%;
+    font-size: 14px;
+    word-wrap: break-word;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* User Message */
+.user-message {
+    background: #3357f5;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+    border-bottom-right-radius: 5px;
+}
+
+/* Assistant Message */
+.assistant-message {
+    background: #ffffff;
+    color: #333;
+    align-self: flex-start;
+    text-align: left;
+    border-bottom-left-radius: 5px;
+}
+
+/* Input Field */
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #3357f5;
+    box-shadow: 0px 0px 8px rgba(76, 175, 80, 0.5);
+}
+
+/* Send Button */
+button {
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: #3357f5;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #1101ba;
+    transform: scale(1.05);
+}
+
+/* Back Link */
+.back-link {
+    display: block;
+    margin-top: 15px;
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    color: #388E3C;
+    text-decoration: underline;
+}

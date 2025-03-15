@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot DISDUKCAPIL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <h2>💬 Chatbot DISDUKCAPIL Kota Sorong</h2>
+        <div id="chat-box"></div>
+
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Tulis pesan di sini..." />
+            <button onclick="sendMessage()">📩 Kirim</button>
+            <button onclick="resetChat()" class="reset-btn">🔄 Reset</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (!userInput.trim()) return;
+
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `
+                <div class='message user-message'>
+                    <i class="fa-solid fa-user"></i> ${userInput}
+                </div>
+            `;
+
+            document.getElementById("user-input").value = "";
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatBox.innerHTML += `
+                    <div class='message assistant-message'>
+                        <i class="fa-solid fa-robot"></i> ${data.response}
+                    </div>
+                `;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+
+        function resetChat() {
+            document.getElementById("chat-box").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
